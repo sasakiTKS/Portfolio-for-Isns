@@ -1,0 +1,33 @@
+<p class="keyword">キーワード検索</p>
+<% if member_signed_in? %>
+  <div class="search_form">
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <div class="search-text">
+        <%= f.text_field :word, class: "form-control" %>
+      </div>
+      <div class="search-select">
+        <%= f.select :search, options_for_select([["完全一致","perfect_matuch"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]), class: "form-control" %>
+      </div>
+      <div class="d-grid">
+        <%= f.submit "検索", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="search_form">
+    <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+      <div class="search-text">
+        <%= f.text_field :word, class: "form-control" %>
+      </div>
+      <div class="search-range">
+        <%= f.select :range, options_for_select([['メンバー名'], ['コメント']]), class: "form-control" %>
+      </div>
+      <div class="search-select">
+        <%= f.select :search, options_for_select([["完全一致","perfect_matuch"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]), class: "form-control" %>
+      </div>
+      <div class="d-grid">
+        <%= f.submit "検索", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

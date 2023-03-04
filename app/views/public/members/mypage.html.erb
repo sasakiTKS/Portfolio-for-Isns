@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h4 class="text-mypage">マイページ</h4>
+      <div class="profile-image">
+        <%= image_tag @member.get_profile_image, class: "rounded-circle", size:"250x250" %>
+      </div>
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <td><%= @member.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @member.introduction %></td>
+        </tr>
+        <tr>
+          <th>フォロー</th>
+          <th><%= link_to @member.followers.count, followers_member_path(@member) %></th>
+        </tr>
+        <tr>
+          <th>フォロワー</th>
+          <th><%= link_to @member.follows.count, follows_member_path(@member) %></th>
+        </tr>
+      </table>
+      <div class="edit d-grid">
+        <% if @member.name != "guestmember" %>
+          <%= link_to "編集する",  edit_member_registration_path, class: "btn btn-success btn-block" %>
+        <% end %>
+      </div>
+      <div class="postindex d-grid">
+        <%= link_to "トップ画面に戻る", posts_path, class: "btn btn-secondary" %>
+      </div>
+      <div class="nonrelease d-grid">
+        <%= link_to "非公開一覧", members_confirm_path(@member), class: "btn btn-info" %>
+      </div>
+    </div>
+    <div class="col-9">
+      <P class="index-mypage">自分の投稿一覧</P>
+      <%= render 'public/posts/post_index', posts: @posts %>
+    </div>
+  </div>
+  <%= paginate @posts %>
+</div>

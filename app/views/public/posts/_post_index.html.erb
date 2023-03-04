@@ -1,0 +1,33 @@
+<% posts.each do |post| %>
+<div class="col">
+  <div class="card-index-public">
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_post_image, width: '100%', height: '50%' %>
+    <% end %>
+    <div class="card-member-name">
+      <strong>ユーザー名</strong>：<%= post.member.name %>
+    </div>
+    <div class="card-title">
+      <strong>タイトル</strong>：<%= post.title %>
+    </div>
+    <div class="card-detail">
+      <strong>投稿者コメント</strong>：<%= post.detail %>
+    </div>
+    <div class="card-tag">
+      <i class="fas fa-tag"></i>
+      <%= post.tags.map(&:name).join(',') %>
+    </div>
+    <div class="likecomment">
+      <div id="like_btn_<%= post.id %>">
+        <%= render 'public/likes/like', post: post %>
+      </div>
+      <div class="comment">
+        <i class="fas fa-comment-dots"></i>
+        <%= link_to post_path(post.id) do %>
+          <%= "#{post.comments.count}" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="col-8">
+  <div class="card-show">
+    <%= image_tag post.get_post_image, width: "100%", height: "100%" %>
+    <div class="card-date">
+      <strong>投稿日</strong>：<%= post.created_at.strftime('%Y/%m/%d') %>
+    </div>
+    <div class="card-member-name">
+      <strong>ユーザー名</strong>：<%= link_to post.member.name, member_path(@member) %>
+    </div>
+    <div class="card-title">
+      <strong>タイトル</strong>：<%= post.title %>
+    </div>
+    <div class="card-detail">
+      <strong>投稿者コメント</strong>：<%= post.detail %>
+    </div>
+    <div class="card-tag">
+      <% tag_posts.each do |tag| %>
+        <i class="fas fa-tag"></i>
+        <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
+        <%= "(#{tag.posts.count})" %>
+      <% end %>
+    </div>
+    <div>
+      <% if member_signed_in? && current_member.id == post.member_id %>
+      <div class="card-edit d-grid">
+        <%= link_to "編集する", edit_post_path(post.id), class: "btn btn-success" %>
+      </div>
+      <div class="card-delete d-grid">
+        <%= button_to "削除する", post_path(post), method: :delete, data: { confirm: "本当に削除してもいいですか？" }, class: "btn btn-danger post-show" %>
+      </div>
+      <% end %>
+      <% if member_signed_in? %>
+        <%= link_to "トップ画面へ", root_path, class: "btn btn-secondary d-grid" %>
+      <% else %>
+        <%= link_to "トップ画面へ", admin_root_path, class: "btn btn-secondary d-grid" %>
+      <% end %>
+    </div>
+  </div>
+</div>

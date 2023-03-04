@@ -1,0 +1,7 @@
+<p class="taglist">タグ一覧</p>
+<p class="tagdetail">~タグを含む投稿のみに絞れます~</p>
+<% tag_list.each do |list| %>
+  <i class="fa fa-tag"></i>
+  <%= link_to list.name, tag_posts_path(tag_id: list.id) %>
+  <%= "(#{list.posts.where(status: :released).count})" %>
+<% end %>

@@ -1,0 +1,30 @@
+<h2 class="index">投稿一覧</h2>
+<div class="container">
+  <p class="sort">並び順変更</p>
+  <%= link_to '新着順', admin_sort_new_path(new: 'true'), {class: 'sort-link btn btn-secondary btn-sm' "#{'active' if current_page?('/posts/index?new=true')}"} %>
+  <%= link_to '古い順', admin_sort_old_path(old: 'true'), {class: 'sort-link btn btn-secondary btn-sm' "#{'active' if current_page?('/posts/index?old=true')}"} %>
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    <% @posts.each do |post| %>
+      <div class="col">
+        <div class="card-index">
+          <%= link_to admin_post_path(post.id) do %>
+            <%= image_tag post.get_post_image, width: "100%", height: "100%" %>
+          <% end %>
+          <strong>タイトル</strong>：<%= post.title %><br>
+          <strong>投稿者コメント</strong>：<%= post.detail %><br>
+          <div class="d-flex">
+            <i class="fas fa-tag"></i>
+            <%= post.tags.map(&:name).join(',') %>
+            <div class="comment">
+              <i class="fas fa-comment-dots"></i>
+              <%= link_to admin_post_path(post.id) do %>
+                <%= "#{post.comments.count}" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @posts %>
+  </div>
+</div>

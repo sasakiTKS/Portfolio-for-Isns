@@ -1,0 +1,16 @@
+<h2 class="tagpost-index">タグ別投稿一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <% if @posts.exists? %>
+        <%= render 'public/posts/post_index', posts: @posts %>
+      <% else %>
+        <div class="search-result">検索内容に一致するものがありませんでした</div>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= render 'public/searches/search' %>
+      <%= render 'public/posts/tag_index', tag_list: @tag_list %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="box-inner">
+  <div class="box-member">
+    <div class="box-head">
+      <%= @member.name %>さんの詳細
+    </div>
+    <div class="box-image">
+      <%= image_tag @member.get_profile_image, width: "100%", height: "100%", class: "rounded-circle" %>
+    </div>
+    <div class="box-name">
+      名前：<%= @member.name %>
+    </div>
+    <div class="box-introduction">
+      自己紹介：<%= @member.introduction %>
+    </div>
+    <div class="box-email">
+      メールアドレス：<%= @member.email %>
+    </div>
+    <div class="box-status">
+      会員ステータス
+      <%= form_with model: @member, url: admin_member_path(@member.id), method: :patch do |f| %>
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_deleted, "有効", {value: false, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_deleted, "退会", {value: true, style: "display: inline-block;"} %>
+        <%= f.submit "変更", class: "btn btn-success btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>

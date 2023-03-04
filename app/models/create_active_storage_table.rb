@@ -1,0 +1,2 @@
+class CreateActiveStorageTable < ApplicationRecord
+end

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h4 class="text-mypage"><%= @member.name %>さんの詳細</h4>
+      <div class="profile-image">
+        <%= image_tag @member.get_profile_image, class: "rounded-circle", size:"250x250" %>
+      </div>
+      <table class="table">
+        <tr>
+          <th>名前</th>
+          <td><%= @member.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @member.introduction %></td>
+        </tr>
+      </table>
+      <div>
+        <%= render 'follow', member: @member %>
+      </div>
+      <div class="postindex d-grid">
+        <%= link_to "トップ画面に戻る", posts_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+    <div class="col-9">
+      <P class="index-mypage"><%= @member.name %>さんの投稿一覧</P>
+      <%= render 'public/posts/post_index', posts: @posts %>
+    </div>
+  </div>
+  <%= paginate @posts %>
+</div>

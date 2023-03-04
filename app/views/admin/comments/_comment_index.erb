@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <p class="comment-count-admin">コメント件数:<%= comments.count %></p>
+      <% comments.each do |comment| %>
+      <div class="comments-index-admin">
+        <%= image_tag comment.member.get_profile_image, size: "30x30", class: "rounded-circle" %>
+        <%= comment.member.name %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <div class="d-flex">
+          <%= comment.comment %>
+          <div class="comment-delete">
+            <%= button_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, remote: true, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= render 'public/searches/search' %>
+    </div>
+  </div>
+</div>

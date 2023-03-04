@@ -1,0 +1,45 @@
+<body id="postnew">
+  <div class="error">
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラー
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="box3">
+    <div class="box-inner">
+      <%= form_with model: @post do |f| %>
+      <h3 class="newpost">新規投稿</h3>
+      <div class="box-image">
+        <%= f.label :投稿画像 %>
+        <%= f.file_field :post_image, accept: "image/*", class: "form-control" %>
+      </div>
+      <div class="box-title">
+        <%= f.label :タイトル %><br>
+        <%= f.text_field :title, class: "form-control"  %>
+      </div>
+      <div class="box-detail">
+        <%= f.label :本文 %><br>
+        <%= f.text_area :detail, class: "form-control"  %>
+      </div>
+      <div class="box-tag">
+        <%= f.label :タグ %><br>
+        <%= f.text_field :name, placeholder:"タグを二つ以上指定する場合は[ , ]で区切ってください", class: "form-control"  %>
+      </div>
+      <div class="box-status">
+        <%= f.label "公開範囲を選択する" %><br>
+        <%= f.select :status, [["公開", "released"],["非公開","nonreleased"]],required: true, class: "form-control" %>
+      </div>
+      <div class="d-grid">
+        <%= f.submit "投稿する", class: "btn btn-success" %>
+      </div>
+      <div class="d-grid">
+        <%= link_to "トップ画面に戻る", posts_path, class: "btn btn-secondary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</body>

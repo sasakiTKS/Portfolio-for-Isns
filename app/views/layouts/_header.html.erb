@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-brand" style="padding-bottom: 15px;">
+      <%= link_to root_path do %>
+        <%= image_tag ('logo.png'), width:'10%', height:"10%" %>
+      <% end %>
+    </div>
+    <div>
+      <ul class="navbar-nav ml-auto", style="font-family: Hannotate SC;">
+        <% if member_signed_in? %>
+          <li>
+            <%= link_to members_mypage_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-house-user"></i>マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_post_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-plus"></i> 新規投稿
+            <% end %>
+          </li>
+          <li>
+            <%= link_to notifications_path, class: 'btn btn-outline-dark' do %>
+              <% if unchecked_notifications.any? %>
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-bell fa-stack-1x" style="color: green;"></i>
+                  <i class="fa fa-circle fa-stack-1x n-circle" style="color: gold;"></i>
+                </span>通知
+              <% else %>
+                <i class="fas fa-bell"></i>通知
+              <% end %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to members_likes_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-bookmark"></i> いいね
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_member_session_path, method: :get, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to admin_members_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-users"></i>会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_posts_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-list-alt"></i>投稿一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_comments_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-list-alt"></i>コメント一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :get, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to new_member_registration_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-user-plus"></i>新規登録
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_member_session_path, class: 'btn btn-outline-dark' do %>
+              <i class="fas fa-sign-in-alt"></i> ログイン
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

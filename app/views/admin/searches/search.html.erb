@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+  <h2>検索結果一覧</h2>
+  <% if @range == "メンバー名" %>
+    <tbody>
+      <%= render 'admin/members/index', members: @members %>
+    </tbody>
+  <% else %>
+    <tbody>
+      <%= render 'admin/comments/comment_index', comments: @comments %>
+    </tbody>
+  <% end %>
+  </div>
+</div>

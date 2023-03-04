@@ -1,0 +1,18 @@
+<table class='table'>
+    <th>フォロー</th>
+    <th><%= link_to @member.followers.count, followers_member_path(@member) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to @member.follows.count, follows_member_path(@member) %></th>
+  </tr>
+</table>
+
+<% if member != current_member %>
+  <% if member.is_followed_by?(current_member) %>
+    <%=button_to "フォロー外す", member_relationships_path(@member), method: "delete", class: "btn btn btn-primary mb-3 follow" %>
+  <% else %>
+    <%=button_to "フォローする", member_relationships_path(@member), method: "post", class: "btn btn btn-success mb-3 follow" %>
+  <% end %>
+<% end %>
+

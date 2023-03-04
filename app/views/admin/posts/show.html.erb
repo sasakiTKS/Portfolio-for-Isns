@@ -1,0 +1,12 @@
+<h3 class="show">投稿詳細</h3>
+<div class="container">
+  <div class="row">
+    <%= render 'post_show', post: @post, tag_posts: @tag_posts %>
+    <div class="col-4">
+      <div id="comment-area">
+        <%= render "public/comments/index", post: @post, comments: @comments %>
+      </div>
+      <%= paginate @comments %>
+    </div>
+  </div>
+</div>

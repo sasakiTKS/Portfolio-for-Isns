@@ -1,0 +1,6 @@
+<%= form_with model:[@post, @comment], url: post_comments_path(@post), local: false do |f| %>
+  <%= f.text_area :comment, :size=>"60x3", placeholder: "コメントする", class: "form-control" %>
+  <div class="comment-submit">
+    <%= f.submit "送信する", class: "btn btn-secondary btn-sm" %>
+  </div>
+<% end %>

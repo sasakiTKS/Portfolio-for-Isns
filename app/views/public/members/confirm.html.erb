@@ -1,0 +1,29 @@
+<h3 class="nonrelease">非公開一覧</h3>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    <% if @posts.exists? %>
+      <% @posts.each do |post| %>
+        <div class="col">
+          <div class="card-nonrelease">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_post_image, width: '100%', height: '100%' %>
+            <% end %>
+            <div class="card-title-nonrelease">
+              <strong>タイトル</strong>：<%= post.title %>
+            </div>
+            <div class="card-detail">
+              <strong>投稿者コメント</strong>：<%= post.detail %>
+            </div>
+            <div class="card-tag">
+              <i class="fas fa-tag"></i>
+              <%= post.tags.map(&:name).join(',') %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @posts %>
+    <% else %>
+      <div class="nothing">非公開中の投稿作品はありません</div>
+    <% end %>
+  </div>
+</div>

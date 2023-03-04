@@ -1,0 +1,11 @@
+<% if post.liked_by?(current_member) %>
+  <%= button_to post_likes_path(post), method: :delete, class: "mybutton", remote: true do %>
+    <i class="fas fa-heart favorite1"></i>
+    <%= post.likes.count %>
+  <% end %>
+<% else %>
+  <%= button_to post_likes_path(post), class: "mybutton", remote: true do %>
+    <i class="fas fa-heart favorite2"></i>
+    <%= post.likes.count %>
+  <% end %>
+<% end %>

@@ -1,0 +1,18 @@
+
+  <p class="comment-count">コメント件数:<%= comments.count %></p>
+  <% comments.each do |comment| %>
+  <div class="comments-index">
+    <%= image_tag comment.member.get_profile_image, size: "30x30", class: "rounded-circle" %>
+    <%= comment.member.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <div class="d-flex">
+      <%= comment.comment %>
+      <% if comment.member == current_member %>
+      <div class="comment-delete">
+        <%= button_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger btn-sm" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+

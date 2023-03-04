@@ -1,0 +1,15 @@
+<% visiter = notification.visiter %>
+<% visited = notification.visited %>
+<% post = notification.post %>
+
+<div class="member-view clearfix">
+  <!--%= link_to member_path(notification.visiter) do %-->
+  <%= image_tag visiter.get_profile_image, size: "50x50", class: "rounded-circle" %>
+  <!--% end %-->
+  <%= notification_form(notification) %>
+  <%="#{time_ago_in_words(notification.created_at)}" %>前
+  <br>
+  <% if !@comment.nil? %>
+    <p><%= @comment %></p>
+  <% end %>
+</div>

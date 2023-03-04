@@ -1,0 +1,21 @@
+<h3 class="notification">通知一覧</h3>
+<div class="container">
+  <div class="row">
+    <div class="notifications">
+      <%= button_to destroy_all_notifications_path, data: { confirm: "本当に削除してもいいですか？" }, method: :delete, class: "btn btn-danger notification-delete" do %>
+        <i class="fas fa-trash" style="color: black;"></i>
+        <h7 class="destroy_all">全削除</h7>
+      <% end %>
+      <% if @notifications.exists? %>
+        <div class="members-index">
+          <%= render partial: 'public/notifications/notification', collection: @notifications %>
+        </div>
+      <% else %>
+        <div class="nonotification">通知はありません</div>
+      <% end %>
+      <div class="top-back-notification">
+        <%= link_to "トップ画面に戻る", posts_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

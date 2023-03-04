@@ -1,0 +1,17 @@
+<h2 class="index">投稿一覧</h2>
+<div class="container">
+  <p class="sort">並び順変更</p>
+  <%= link_to '新着順', sort_new_path(new: 'true'), {class: 'sort-link btn btn-secondary btn-sm' "#{'active' if current_page?('/posts/index?new=true')}"} %>
+  <%= link_to '古い順', sort_old_path(old: 'true'), {class: 'sort-link btn btn-secondary btn-sm' "#{'active' if current_page?('/posts/index?old=true')}"} %>
+  <%= link_to '❤多い順', sort_like_path(like: 'true'), {class: 'sort-link btn btn-secondary btn-sm' "#{'active' if current_page?('/posts/index?like=true')}"} %>
+  <div class="row">
+    <div class="col-9">
+      <%= render 'post_index', posts: @posts %>
+    </div>
+    <div class="col-3">
+      <%= render 'public/searches/search' %>
+      <%= render 'tag_index', tag_list: @tag_list %>
+    </div>
+  </div>
+</div>
+<%= paginate @posts %>
