@@ -3,7 +3,7 @@
   <h2>検索結果一覧</h2>
   <% if @range == "メンバー名" %>
     <tbody>
-      <%= render 'admin/members/index', members: @members %>
+      <%= render 'admin/members/member_index', members: @members %>
     </tbody>
   <% else %>
     <tbody>
