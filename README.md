@@ -37,7 +37,7 @@ https://drive.google.com/file/d/1HY_ke1loUHFhw0LebXcPFVpFlcJeMpqg/view?usp=shari
 https://docs.google.com/spreadsheets/d/11od0EOtXPJt3dSi57Burwh_IJuGp28j0bX60FRRaBIc/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux
+- OS：Linuxx
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - IDE：Cloud9
